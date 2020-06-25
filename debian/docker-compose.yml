@@ -6,6 +6,8 @@ services:
       - MySQL.env
     volumes:
       - ./datadir:/var/lib/mysql
+    ports:
+      - "3306:3306"
   web:
     build: .
     env_file:
