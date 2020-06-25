@@ -1,9 +1,9 @@
 #
 # Builds a custom docker image for ShinobiCCTV Pro
 #
-FROM node:8
+FROM node
 
-LABEL Author="MiGoller"
+LABEL Author="Orig-MiGoller Edit-Rico"
 
 # Set environment variables to default values
 ENV ADMIN_USER=admin@shinobi.video \
@@ -24,14 +24,14 @@ RUN mkdir -p /opt/shinobi
 WORKDIR /opt/shinobi
 
 # Install package dependencies
-RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
+RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y ffmpeg python pkg-config libcairo-dev make g++ libjpeg-dev git mysql-client \
     && apt-get clean
 
 # Clone the Shinobi CCTV PRO repo
 RUN mkdir master_temp
-RUN git clone https://github.com/ShinobiCCTV/Shinobi.git master_temp
+RUN git clone https://gitlab.com/Shinobi-Systems/Shinobi.git master_temp
 RUN cp -R -f master_temp/* .
 RUN rm -rf $distro master_temp
 
@@ -39,7 +39,7 @@ RUN rm -rf $distro master_temp
 RUN npm install pm2 -g
 
 RUN npm install && \
-    npm install canvas@1.6.5 moment --unsafe-perm
+    npm install canvas moment --unsafe-perm
 
 # Copy code
 COPY docker-entrypoint.sh .
