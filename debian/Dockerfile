@@ -39,7 +39,7 @@ RUN rm -rf $distro master_temp
 RUN npm install pm2 -g
 
 RUN npm install && \
-    npm install canvas moment --unsafe-perm
+    npm install canvas moment gyp
 
 # Copy code
 COPY docker-entrypoint.sh .
