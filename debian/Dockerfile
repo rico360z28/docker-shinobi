@@ -24,7 +24,8 @@ RUN mkdir -p /opt/shinobi
 WORKDIR /opt/shinobi
 
 # Install package dependencies
-RUN apt-get update \
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+    && apt-get update \
     && apt-get install -y ffmpeg python pkg-config libcairo-dev make g++ libjpeg-dev git mysql-client nodejs npm \
     && apt-get clean
 
