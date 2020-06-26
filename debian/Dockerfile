@@ -1,7 +1,7 @@
 #
 # Builds a custom docker image for ShinobiCCTV Pro
 #
-FROM node
+FROM ubuntu
 
 LABEL Author="Orig-MiGoller Edit-Rico"
 
@@ -26,7 +26,7 @@ WORKDIR /opt/shinobi
 # Install package dependencies
 RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list \
     && apt-get update \
-    && apt-get install -y ffmpeg python pkg-config libcairo-dev make g++ libjpeg-dev git mysql-client \
+    && apt-get install -y ffmpeg python pkg-config libcairo-dev make g++ libjpeg-dev git mysql-client nodejs npm \
     && apt-get clean
 
 # Clone the Shinobi CCTV PRO repo
