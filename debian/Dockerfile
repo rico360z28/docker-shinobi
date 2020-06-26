@@ -33,7 +33,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
 RUN mkdir master_temp
 RUN git clone https://github.com/rico360z28/Shinobi.git master_temp
 RUN cp -R -f master_temp/* .
-RUN rm -rf $distro master_temp
+# RUN rm -rf $distro master_temp
 
 # Install NodeJS dependencies
 RUN npm install pm2 -g
